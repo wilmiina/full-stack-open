@@ -1,1 +1,109 @@
+Tehtävä 0.4: uusi muistiinpano
 
+```mermaid
+sequenceDiagram
+  participant browser
+  participant server
+
+  browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+  activate server
+  server->>browser: HTML document
+  deactivate server
+
+  Note left of server: note    höhöö
+
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+  activate server
+  server->>browser: HTML document
+  deactivate server
+
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+  activate server
+  server->>browser: the css file
+  deactivate server
+
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+  activate server
+  server->>browser: the JavaScript file
+  deactivate server
+
+  Note right of browser: The JavaScript code executed by the browser fetches the JSON from the server
+
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+  activate server
+  server->>browser: [{content: "höhöö", date: "2026-01-23T09:31:37.896Z"}, ...]
+  deactivate server
+
+  Note left of server: Note rendering callback function is executed by browser  
+```
+
+Tehtävä 0.5: Single Page App
+
+```mermaid
+sequenceDiagram
+  participant browser
+  participant server
+
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+  activate server
+  server->>browser: HTML document
+  deactivate server
+
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+  activate server
+  server->>browser: the css file
+  deactivate server
+
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+  activate server
+  server->>browser: the JavaScript file
+  deactivate server
+
+  Note right of browser: The JavaScript code executed by the browser fetches the JSON from the server
+
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+  activate server
+  server->>browser: [{content: "höhöö", date: "2026-01-23T09:31:37.896Z"}, ...]
+  deactivate server
+
+  Note left of server: Note rendering callback function is executed by browser
+```
+
+Tehtävä 0.6: Uusi muistiinpano
+
+```mermaid
+sequenceDiagram
+  participant browser
+  participant server
+
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+  activate server
+  server->>browser: HTML document
+  deactivate server
+
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+  activate server
+  server->>browser: the css file
+  deactivate server
+
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+  activate server
+  server->>browser: the JavaScript file
+  deactivate server
+
+  Note right of browser: The JavaScript code executed by the browser fetches the JSON from the server
+
+  browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+  activate server
+  server->>browser: [{content: "höhöö", date: "2026-01-23T09:31:37.896Z"}, ...]
+  deactivate server
+
+  Note left of server: Note rendering callback function is executed by browser
+
+  browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+  activate server
+  server->>browser: [{content: "eikä siis mitä!", date: "2026-01-23T10:04:11.270Z"}, {message: "note created"}]
+  deactivate server
+
+  Note right of browser: Note created into JSON
+```

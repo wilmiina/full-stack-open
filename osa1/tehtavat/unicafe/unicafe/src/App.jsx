@@ -18,6 +18,22 @@ const Stats = () => {
   )
 }
 
+const Statistics = (props) => {
+  return(
+    <div>
+       <header>
+      <h1>statistics</h1>
+      </header>
+      <p>good {props.good} <br/>
+      neutral {props.neutral} <br/>
+      bad {props.bad} <br/>
+      all {props.all} <br/>
+      average {props.average} <br/>
+      positive {props.positive}% </p>
+    </div>
+  )
+}
+
 
 const App = () => {
   // tallenna napit omaan tilaansa
@@ -26,6 +42,8 @@ const App = () => {
   const [bad, setBad] = useState(0)
   const [all, setAll] = useState(0)
   const [total, setTotal] = useState(0)
+  const average = total / all
+  const positive = (good / all) * 100
 
   const handleGoodCLick = () => {
     const updatedGood = good + 1
@@ -52,13 +70,7 @@ const App = () => {
       <Button onClick={handleGoodCLick} text='good' />
       <Button onClick={handleNeutralClick} text='neutral' />
       <Button onClick={handleBadClick} text='bad' />
-      <Stats />
-      <p>good {good} </p>
-      <p>neutral {neutral} </p>
-      <p>bad {bad} </p>
-      <p>all {all} </p>
-      <p>average {total / all}</p>
-      <p>positive {(good / all) * 100}%</p>
+      <Statistics good={good} neutral={neutral} bad={bad} all={all} average={average} positive={positive} />
     </div>
   )
 }

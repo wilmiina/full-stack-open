@@ -14,9 +14,7 @@ const Statistics = (props) => {
   if (props.all === 0) {
     return (
       <div>
-        <header>
-          <h1>statistics </h1>
-        </header>
+        <h1>statistics </h1>
         <p>No feedback given. </p>
       </div>
     )
@@ -24,16 +22,22 @@ const Statistics = (props) => {
 
   return (
     <div>
-      <header>
-        <h1>statistics</h1>
-        </header>
-        <p>good {props.good} <br/>
-        neutral {props.neutral} <br/>
-        bad {props.bad} <br/>
-        all {props.all} <br/>
-        average {props.average} <br/>
-        positive {props.positive}% </p>
+      <h1>statistics</h1>
+      <StatisticsLine text="good" value={props.good} />
+      <StatisticsLine text="neutral" value={props.neutral} />
+      <StatisticsLine text="bad" value={props.bad} />
+      <StatisticsLine text="all" value={props.all} />
+      <StatisticsLine text="average" value={props.average} />
+      <StatisticsLine text="positive" value={props.positive} />
     </div>
+    )
+  }
+
+  const StatisticsLine = (props) => {
+    return (
+      <div>
+        {props.text} {props.value}
+      </div>
     )
   }
 

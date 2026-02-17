@@ -10,29 +10,33 @@ const Header = () => {
 
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
 
-const Stats = () => {
-  return (
-    <header>
-      <h1>statistics</h1>
-    </header>
-  )
-}
-
 const Statistics = (props) => {
-  return(
+  if (props.all === 0) {
+    return (
+      <div>
+        <header>
+          <h1>statistics </h1>
+        </header>
+        <p>No feedback given. </p>
+      </div>
+    )
+  }
+
+  return (
     <div>
-       <header>
-      <h1>statistics</h1>
-      </header>
-      <p>good {props.good} <br/>
-      neutral {props.neutral} <br/>
-      bad {props.bad} <br/>
-      all {props.all} <br/>
-      average {props.average} <br/>
-      positive {props.positive}% </p>
+      <header>
+        <h1>statistics</h1>
+        </header>
+        <p>good {props.good} <br/>
+        neutral {props.neutral} <br/>
+        bad {props.bad} <br/>
+        all {props.all} <br/>
+        average {props.average} <br/>
+        positive {props.positive}% </p>
     </div>
-  )
-}
+    )
+  }
+
 
 
 const App = () => {

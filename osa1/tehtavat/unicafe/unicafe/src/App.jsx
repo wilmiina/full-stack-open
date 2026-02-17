@@ -18,21 +18,32 @@ const Stats = () => {
   )
 }
 
+
 const App = () => {
   // tallenna napit omaan tilaansa
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [all, setAll] = useState(0)
+  const [total, setTotal] = useState(0)
 
   const handleGoodCLick = () => {
-    setGood(good + 1)
+    const updatedGood = good + 1
+    setGood(updatedGood)
+    setAll(updatedGood + neutral + bad)
+    setTotal(total + 1)
   }
   const handleNeutralClick = () => {
-    setNeutral(neutral + 1)
+    const updatedNeutral = neutral + 1
+    setNeutral(updatedNeutral)
+    setAll(good + updatedNeutral + bad)
   }
 
   const handleBadClick = () => {
-    setBad(bad + 1)
+    const updatedBad = bad + 1
+    setBad(updatedBad)
+    setAll(good + neutral + updatedBad)
+    setTotal(total - 1)
   }
 
   return (
@@ -45,6 +56,9 @@ const App = () => {
       <p>good {good} </p>
       <p>neutral {neutral} </p>
       <p>bad {bad} </p>
+      <p>all {all} </p>
+      <p>average {total / all}</p>
+      <p>positive {(good / all) * 100}%</p>
     </div>
   )
 }

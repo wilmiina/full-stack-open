@@ -20,9 +20,18 @@ const App = () => {
     const chance = Math.floor(Math.random() * anecdotes.length)
     setSelected(chance)
   }
+
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0))
+  const vote = () => {
+    const copy = [...votes]
+    copy[selected] += 1
+    setVotes(copy)
+  }
+  
   return (
     <div>
-      <p>{anecdotes[selected]}</p>
+      <p>{anecdotes[selected]} <br/> has {votes[selected]} votes</p>
+      <Button onClick={vote} text='äänestä' />
       <Button onClick={haphazard} text='more more more' />
     </div>
   )

@@ -1,27 +1,23 @@
-const Course = ({ courses }) => {
+const Course = ({ course }) => {
   return(
     <div>
-      <h1>Web development curriculum</h1>
-      <Header courses={courses} />
-      <Content courses={courses} />
-      <Total courses={courses} />
+      <Header course={course} />
+      <Content course={course} />
+      <Total course={course} />
     </div>
   )
 }
 
-const Header = ({ course }) => {
+const Header = (props) => {
   return(
-  <div>
-        <h2>{course.name}</h2>
-  </div>
+  <h2>{props.course.name}</h2>
   )
 }
 
-
-const Content = ({courses}) => {
+const Content = ({ course }) => {
   return(
     <li>
-     {courses.parts.map((part) => (
+      {course.parts.map((part) => (
         <Part key={part.id} part={part} />
       ))}
     </li>
@@ -30,12 +26,12 @@ const Content = ({courses}) => {
 
 const Part = ({ part }) => {
   return(
-    <p>{part.name} {part.exercises}</p>
+    <p>{part.name} {part.exercises} </p>
   ) 
 }
 
 const Total = (props) => {
-  const total = props.courses.parts.reduce((sum, order) => {
+  const total = props.course.parts.reduce((sum, order) => {
     return sum + order.exercises
   }, 0 )
   return(

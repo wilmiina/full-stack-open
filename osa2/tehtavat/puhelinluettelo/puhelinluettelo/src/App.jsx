@@ -1,18 +1,14 @@
 import { useState } from 'react'
 
-const Persons = ({ filteredPerson}) => {
+const Filter = ({ searchName, handleSearchName }) => {
   return (
-    <div>
-      {filteredPerson.map(person =>
-        <li key={person.name}> {person.name} {person.number} </li>
-      )}
-    </div>
+    <div>filter shown with: <input value={searchName} onChange={handleSearchName} /></div>
   )
 }
 
 const PersonForm = ({ addName, newName, handleNewName, newNumber, handleNewNumber}) => {
   return (
-  <form onSubmit={addName}>
+    <form onSubmit={addName}>
     <div>name: <input value={newName} onChange={handleNewName} /></div>
     <div>number: <input value={newNumber} onChange={handleNewNumber} /></div>
     <div><button type="submit">add</button></div>
@@ -20,9 +16,13 @@ const PersonForm = ({ addName, newName, handleNewName, newNumber, handleNewNumbe
   )
 }
 
-const Filter = ({ searchName, handleSearchName }) => {
+const Persons = ({ filteredPerson}) => {
   return (
-    <div>filter shown with: <input value={searchName} onChange={handleSearchName} /></div>
+    <div>
+      {filteredPerson.map(person =>
+        <li key={person.name}> {person.name} {person.number} </li>
+      )}
+    </div>
   )
 }
 

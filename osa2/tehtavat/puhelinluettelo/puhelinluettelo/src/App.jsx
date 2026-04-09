@@ -16,10 +16,10 @@ const PersonForm = ({ addName, newName, handleNewName, newNumber, handleNewNumbe
   )
 }
 
-const Persons = ({ filteredPerson}) => {
+const Persons = ({ personsToShow }) => {
   return (
     <div>
-      {filteredPerson.map(person =>
+      {personsToShow.map(person =>
         <li key={person.name}> {person.name} {person.number} </li>
       )}
     </div>
@@ -35,7 +35,6 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [searchName, setSearchName] = useState('')
-  const [filteredPerson, setFilteredPerson] = useState(persons)
 
   const addName = (event) => {
     event.preventDefault()
@@ -52,7 +51,6 @@ const App = () => {
     }
     else {
       setPersons(persons.concat(nameObject))
-      setFilteredPerson(filteredPerson.concat(nameObject))
       setNewName('')
       setNewNumber('')
     }
@@ -71,10 +69,12 @@ const App = () => {
   const handleSearchName = (event) => {
     console.log(event.target.value)
     setSearchName(event.target.value)
-
-    const filterName = persons.filter((person) => person.name.toLowerCase().includes(event.target.value.toLowerCase()))
-    setFilteredPerson(filterName)
   }
+
+  const personsToShow = searchName
+    ? persons.filter(person => person.name.toLowerCase().includes(searchName.toLowerCase())
+    )
+    :persons
 
   return (
     <div>
@@ -83,7 +83,7 @@ const App = () => {
       <h2>add a new</h2>
       <PersonForm addName={addName} newName={newName} handleNewName={handleNewName} newNumber={newNumber} handleNewNumber={handleNewNumber} />
       <h2>Numbers</h2>
-      <Persons filteredPerson={filteredPerson} />
+      <Persons personsToShow={personsToShow} />
     </div>
   )
 }
